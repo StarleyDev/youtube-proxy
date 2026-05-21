@@ -2,6 +2,10 @@
 
 A simple YouTube proxy streaming application built with TypeScript and Express. This service allows you to embed YouTube videos through a proxy endpoint, supporting both video IDs and full YouTube URLs.
 
+## Screenshot
+
+![YouTube Proxy Screenshot](screenshot.png)
+
 ## Features
 
 - **Video ID Support**: Access videos directly using their YouTube video ID
