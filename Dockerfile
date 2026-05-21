@@ -7,16 +7,17 @@ WORKDIR /app
 # Copy package files
 COPY package*.json ./
 
-# Install dependencies
-RUN npm ci --only=production
+# Install all dependencies (including dev dependencies for TypeScript compilation)
+RUN npm ci
 
 # Copy source code
 COPY . .
 
-# Install TypeScript and build
-RUN npm install -g typescript
-RUN npm install -g ts-node
+# Build TypeScript
 RUN npx tsc
+
+# Install production dependencies only for final image
+RUN npm ci --only=production
 
 # Expose port 3000
 EXPOSE 3000

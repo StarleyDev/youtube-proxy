@@ -2,10 +2,10 @@ version: '3.8'
 
 services:
   youtube-proxy:
-    build: .
+    image: starleydev/youtube-proxy:latest
     container_name: youtube-proxy
     ports:
-      - "3000:3000"
+      - '3000:3000'
     restart: unless-stopped
     environment:
       - NODE_ENV=production
