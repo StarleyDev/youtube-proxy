@@ -5,7 +5,7 @@ services:
     image: starleydev/youtube-proxy:latest
     container_name: youtube-proxy
     ports:
-      - '3000:3000'
+      - '2536:2536'
     restart: unless-stopped
     environment:
       - NODE_ENV=production

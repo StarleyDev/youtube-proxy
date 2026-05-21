@@ -2,7 +2,7 @@
 import express from 'express';
 
 const app = express();
-const port = 3000;
+const port = 2536;
 
 app.get('/', (_req, res) => {
     res.send('Welcome to Youtube Proxy! <br><br> Use /yt-proxy/:videoId or /yt-proxy/:videoUrl to watch a video. <br> Example: /yt-proxy/dQw4w9WgXcQ or /yt-proxy/https://www.youtube.com/watch?v=dQw4w9WgXcQ <br><br> Created by Starley Cazorla - <a href="https://github.com/starleyDev">GitHub</a>');
@@ -31,7 +31,7 @@ app.get('/yt-proxy/:videoIdOrUrl', (req, res) => {
 
     const videoUrl = `https://www.youtube.com/embed/${videoId}`;
 
-    const videoHtml = `<html><body><iframe src="${videoUrl}" width="100%" height="100%"></iframe></body></html>`;
+    const videoHtml = `<html style="background-color: transparent;"><body style="background-color: transparent; margin: 0; padding: 0;"><iframe src="${videoUrl}" width="100%" height="100%" style="background-color: transparent; border: none; border-radius: 10px;"></iframe></body></html>`;
 
     res.send(videoHtml);
 });

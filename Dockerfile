@@ -19,8 +19,8 @@ RUN npx tsc
 # Install production dependencies only for final image
 RUN npm ci --only=production
 
-# Expose port 3000
-EXPOSE 3000
+# Expose port 2536
+EXPOSE 2536
 
 # Start the application
 CMD ["npm", "start"]
