@@ -22,5 +22,5 @@ RUN npm ci --only=production
 # Expose port 2536
 EXPOSE 2536
 
-# Start the application
-CMD ["npm", "start"]
+# Start the application with the compiled JavaScript from dist directory
+CMD ["node", "dist/index.js"]
