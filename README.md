@@ -115,41 +115,39 @@ docker-compose up -d
 Returns a welcome page with usage instructions and examples.
 
 **Response:**
+Returns a modern HTML landing page with gradient background and usage instructions.
 
-```html
-Welcome to Youtube Proxy! Use /yt-proxy/:videoId or /yt-proxy/:videoUrl to watch
-a video.
-```
+### GET `/yt-proxy`
 
-### GET `/yt-proxy/:videoIdOrUrl`
+Proxy endpoint for embedding YouTube videos using query parameters.
 
-Proxy endpoint for embedding YouTube videos.
+**Query Parameters:**
 
-**Parameters:**
+- `urlOrVideoId` (required): Either a YouTube video ID or full YouTube URL
 
-- `videoIdOrUrl` (required): Either a YouTube video ID or full YouTube URL
-
-**Supported URL Formats:**
+**Supported Input Formats:**
 
 - Video ID: `dQw4w9WgXcQ`
 - YouTube URL: `https://www.youtube.com/watch?v=dQw4w9WgXcQ`
 - Short URL: `https://youtu.be/dQw4w9WgXcQ`
 
 **Response:**
-Returns an HTML page with an embedded YouTube video iframe.
+Returns an HTML page with an embedded YouTube video iframe with transparent background.
 
 **Examples:**
 
 ```bash
 # Using video ID
-curl http://localhost:3000/yt-proxy/dQw4w9WgXcQ
+curl http://localhost:2536/yt-proxy?urlOrVideoId=dQw4w9WgXcQ
 
-# Using full URL
-curl http://localhost:3000/yt-proxy/https://www.youtube.com/watch?v=dQw4w9WgXcQ
+# Using full YouTube URL
+curl http://localhost:2536/yt-proxy?urlOrVideoId=https://www.youtube.com/watch?v=dQw4w9WgXcQ
 
 # Using short URL
-curl http://localhost:3000/yt-proxy/https://youtu.be/dQw4w9WgXcQ
+curl http://localhost:2536/yt-proxy?urlOrVideoId=https://youtu.be/dQw4w9WgXcQ
 ```
+
+**Note:** The service automatically extracts the video ID from full YouTube URLs.
 
 ## Development
 

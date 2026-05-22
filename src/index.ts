@@ -132,21 +132,21 @@ app.get('/', (_req, res) => {
             <div class="info-box">
                 <h3>How to Use</h3>
                 <p>Use the following URL patterns to watch videos:</p>
-                <p><code>/yt-proxy/:videoId</code> - Direct video ID</p>
-                <p><code>/yt-proxy/:videoUrl</code> - Full YouTube URL</p>
+                <p><code>/yt-proxy?urlOrVideoId=:videoId</code> - Direct video ID</p>
+                <p><code>/yt-proxy?urlOrVideoId=:videoUrl</code> - Full YouTube URL</p>
 
                 <div class="examples">
                     <div class="example">
                         <strong>Using Video ID:</strong>
-                        <code>/yt-proxy/dQw4w9WgXcQ</code>
+                        <code>/yt-proxy?urlOrVideoId=dQw4w9WgXcQ</code>
                     </div>
                     <div class="example">
                         <strong>Using Full URL:</strong>
-                        <code>/yt-proxy/https://www.youtube.com/watch?v=dQw4w9WgXcQ</code>
+                        <code>/yt-proxy?urlOrVideoId=https://www.youtube.com/watch?v=dQw4w9WgXcQ</code>
                     </div>
                     <div class="example">
                         <strong>Using Short URL:</strong>
-                        <code>/yt-proxy/https://youtu.be/dQw4w9WgXcQ</code>
+                        <code>/yt-proxy?urlOrVideoId=https://youtu.be/dQw4w9WgXcQ</code>
                     </div>
                 </div>
             </div>
@@ -161,6 +161,10 @@ app.get('/', (_req, res) => {
                 <p style="margin-top: 15px; font-size: 12px; color: #999;">
                     Docker Image: starleydev/youtube-proxy:latest
                 </p>
+
+                <p style="margin-top: 15px; font-size: 12px; color: #999;">
+                    Version: 1.0.6 - 22/05/2026
+                </p>
             </div>
         </div>
     </body>
@@ -169,15 +173,15 @@ app.get('/', (_req, res) => {
     res.send(html);
 });
 
-app.get('/yt-proxy/:videoIdOrUrl', (req, res) => {
-    const { videoIdOrUrl } = req.params;
+app.get('/yt-proxy', (req, res) => {
+    const { urlOrVideoId } = req.query;
 
-    let videoId = videoIdOrUrl;
+    let videoId = urlOrVideoId as string;
 
     // If it's a full URL, extract the video ID
-    if (videoIdOrUrl.includes('youtube.com') || videoIdOrUrl.includes('youtu.be')) {
+    if (videoId.includes('youtube.com') || videoId.includes('youtu.be')) {
         try {
-            const url = new URL(videoIdOrUrl);
+            const url = new URL(videoId);
             if (url.hostname.includes('youtu.be')) {
                 // Handle youtu.be format: /<videoId>
                 videoId = url.pathname.split('/').pop() || '';
